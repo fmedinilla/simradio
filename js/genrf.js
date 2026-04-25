@@ -136,6 +136,47 @@ class GenRF {
         this.rf.amplitude = Math.max(-120, this.rf.amplitude - 1);
     }
 
+    // DISPLAY
+    modulationDisplay() {
+        if (!this.power) return '';
+        let displayValue;
+
+        if (this.input_mode === GenRFInputMode.NONE) {
+            displayValue = this.mod.depth;
+        } else if (this.input_mode === GenRFInputMode.MODULATION) {
+            displayValue = this.input_value;
+        }
+
+        return displayValue.toString().padStart(2, '!');
+    }
+
+    frequencyDisplay() { // 000.000
+        if (!this.power) return '';
+        let displayValue;
+
+        if (this.input_mode === GenRFInputMode.NONE) {
+            displayValue = this.carrier_freq.toFixed(3);
+        } else if (this.input_mode === GenRFInputMode.FREQUENCY) {
+            displayValue = this.input_value;
+        }
+
+        return displayValue.toString().padStart(7, '!');
+    }
+
+    amplitudeDisplay() {
+        if (!this.power) return '';
+        let displayValue;
+
+        if (this.input_mode === GenRFInputMode.NONE) {
+            displayValue = this.rf.amplitude;
+        } else if (this.input_mode === GenRFInputMode.AMPLITUDE) {
+            displayValue = this.input_value;
+        }
+
+        return displayValue.toString().padStart(4, '!');
+    }
+
+
     // OUTPUT
     output() {
         if (!this.power) return RfSignal.empty();
