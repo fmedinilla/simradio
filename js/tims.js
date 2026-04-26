@@ -86,17 +86,31 @@ class TimsAudioMonitor {
     }
 }
 
-function processSignal(basebandAudioSignal) {
-    const MAX_LEVEL = 6;
-    const MIN_LEVEL = -35;
+class TIMS {
+    monitorStarted = false;
+    audioMonitor = new TimsAudioMonitor();
 
-    const audioMonitor = new TimsAudioMonitor();
+    processSignal(basebandAudioSignal) {
+        const MAX_LEVEL = 6;
+        const MIN_LEVEL = -35;
 
-    const audio_level = basebandAudioSignal.audio_level;
-    const audio_freq = basebandAudioSignal.audio_freq;
+        const audioMonitor = new TimsAudioMonitor();
 
-    let signalQuality = (audio_level - MIN_LEVEL) / (MAX_LEVEL - MIN_LEVEL); // Valor entre 0.0 y 1.0
-    audioMonitor.updateLevel(signalQuality);
-    audioMonitor.changeFreq(audio_freq);
+        const audio_level = basebandAudioSignal.audio_level;
+        const audio_freq = basebandAudioSignal.audio_freq;
+
+        let signalQuality = (audio_level - MIN_LEVEL) / (MAX_LEVEL - MIN_LEVEL); // Valor entre 0.0 y 1.0
+        this.audioMonitor.updateLevel(signalQuality);
+        this.audioMonitor.changeFreq(audio_freq);
+    }
+
+    turnOnTIMS() {
+        if (!this.monitorStarted) {
+            this.audioMonitor.start();
+            this.monitorStarted = true;
+            return;
+        }
+
+        this.audioMonitor.toggle();
+    }
 }
-
