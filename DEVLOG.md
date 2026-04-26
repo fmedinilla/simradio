@@ -1,4 +1,9 @@
 # DEVLOG
+
+## 26 de abril de 2026
+- se implementa la case `BasebandAudioSignal` que representa la señal de audio que sale de un transceptor.
+- se implementa la clase `TimsAudioMonitor` que será la encargada de reproducir el audio de la señal `BasebandAudioSignal`, para esta mision se usa la función `processSignal`.
+
 ## 25 de abril de 2026
 - se implementan los metodos para obtener el valor del display (con formato para la fuente DSEG7)
 
