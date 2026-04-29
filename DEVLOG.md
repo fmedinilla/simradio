@@ -1,5 +1,9 @@
 # DEVLOG
 
+## 29 de abril de 2026
+- Se crea un modelo para procesar la señal de RF (`RfSignal`) y convertirla en señal de audio (`BasebandAudioSignal`).
+
+
 ## 26 de abril de 2026
 - se implementa la case `BasebandAudioSignal` que representa la señal de audio que sale de un transceptor.
 - se implementa la clase `TimsAudioMonitor` que será la encargada de reproducir el audio de la señal `BasebandAudioSignal`, para esta mision se usa la función `processSignal`.
