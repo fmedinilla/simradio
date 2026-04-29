@@ -2,6 +2,7 @@
 
 ## 29 de abril de 2026
 - Se crea un modelo para procesar la señal de RF (`RfSignal`) y convertirla en señal de audio (`BasebandAudioSignal`).
+- Se implementa la clase `Transceiver` que representa un transceptor radio. Este recibe una `RfSignal` a traves de su método `input()` y devuelve una `BasebandAudioSignal` a traves de su método `output()`.
 
 
 ## 26 de abril de 2026
