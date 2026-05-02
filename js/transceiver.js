@@ -10,28 +10,38 @@ class Transceiver {
     rfSignal = RfSignal.empty();
     basebandAudioSignal = BasebandAudioSignal.noSignal();
 
+    onUpdate = () => {
+        console.log('Transceiver output', this.output());
+    };
+
     togglePower() {
         this.on = !this.on;
+        this.onUpdate();
     }
 
     setAgc(enabled) {
         this.agc_enabled = enabled;
+        this.onUpdate();
     }
 
     toggleRemote() {
         this.remote = !this.remote;
+        this.onUpdate();
     }
 
     setSqLevel(level) {
         this.sq_level = level;
+        this.onUpdate();
     }
 
     setAfLevel(level) {
         this.af_level = level;
+        this.onUpdate();
     }
 
     setFrequency(freq) {
         this.frequency = freq;
+        this.onUpdate();
     }
 
     input(rfSignal) {
@@ -61,7 +71,12 @@ class Transceiver {
         this.is_muted = processedSignal.is_muted;
         this.basebandAudioSignal = BasebandAudioSignal.new(processedSignal.out_level, processedSignal.tone);
 
-        console.log('Transceiver::processedSignal', processedSignal);
+        // console.log('Transceiver::processedSignal', processedSignal);
+        this.onUpdate();
+    }
+
+    connect(onUpdate) {
+        this.onUpdate = onUpdate;
     }
 
     output() {
