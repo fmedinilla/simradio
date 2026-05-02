@@ -30,14 +30,20 @@ const DEFAULT_GENRF_STATE = {
 };
 
 class GenRF {
+    onUpdate = () => {
+        console.log('GenRF output', this.output());
+    }
+
     resetState() {
         Object.assign(this, DEFAULT_GENRF_STATE);
+        this.onUpdate();
     }
 
     // GENERATOR
     togglePower() {
         this.resetState();
         this.power = !this.power;
+        this.onUpdate();
     }
 
     parseInput() {
@@ -59,6 +65,7 @@ class GenRF {
         }
 
         this.setInputMode(GenRFInputMode.NONE);
+        this.onUpdate();
     }
 
     // UNITS
@@ -88,7 +95,7 @@ class GenRF {
         if (!this.power) return;
         if (this.input_mode === GenRFInputMode.NONE) return;
         this.input_value += value;
-        console.log(this.input_value);
+        // console.log(this.input_value);
     }
 
     erase() {
@@ -108,32 +115,38 @@ class GenRF {
     toggleModulation() {
         if (!this.power) return;
         this.mod.on = !this.mod.on;
+        this.onUpdate();
     }
 
     incrementModulation() {
         if (!this.power) return;
         this.mod.depth = Math.min(100, this.mod.depth + 1);
+        this.onUpdate();
     }
 
     decrementModulation() {
         if (!this.power) return;
         this.mod.depth = Math.max(0, this.mod.depth - 1);
+        this.onUpdate();
     }
     
     // RF
     toggleRf() {
         if (!this.power) return;
         this.rf.on = !this.rf.on;
+        this.onUpdate();
     }
 
     incrementRf() {
         if (!this.power) return;
         this.rf.amplitude = Math.min(0, this.rf.amplitude + 1);
+        this.onUpdate();
     }
 
     decrementRf() {
         if (!this.power) return;
         this.rf.amplitude = Math.max(-120, this.rf.amplitude - 1);
+        this.onUpdate();
     }
 
     // DISPLAY
@@ -176,6 +189,9 @@ class GenRF {
         return displayValue.toString().padStart(4, '!');
     }
 
+    connect(onUpdate) {
+        this.onUpdate = onUpdate;
+    }
 
     // OUTPUT
     output() {
