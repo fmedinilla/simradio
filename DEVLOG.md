@@ -1,5 +1,8 @@
 # DEVLOG
 
+## 03 de mayo de 2026
+- se ha creado la página de about
+
 ## 02 de mayo de 2026
 - se ha implementado el metodo connect en `GenRF` para conectar la salida de este con la entrada del transceptor.
 - se ha implementado el metodo connect en `Transceiver` para conectar la salida de este con la entrada del TIMS.
