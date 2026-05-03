@@ -1,7 +1,7 @@
 # DEVLOG
 
 ## 03 de mayo de 2026
-- se ha creado la página de about
+- se ha creado la página de about.
 
 ## 02 de mayo de 2026
 - se ha implementado el metodo connect en `GenRF` para conectar la salida de este con la entrada del transceptor.
@@ -11,7 +11,6 @@
 ## 29 de abril de 2026
 - Se crea un modelo para procesar la señal de RF (`RfSignal`) y convertirla en señal de audio (`BasebandAudioSignal`).
 - Se implementa la clase `Transceiver` que representa un transceptor radio. Este recibe una `RfSignal` a traves de su método `input()` y devuelve una `BasebandAudioSignal` a traves de su método `output()`.
-
 
 ## 26 de abril de 2026
 - se implementa la case `BasebandAudioSignal` que representa la señal de audio que sale de un transceptor.
