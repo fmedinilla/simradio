@@ -3,6 +3,7 @@
 ## 03 de mayo de 2026
 - se ha creado la página de about.
 - se ha implementado una plantilla para la cabecera de las páginas.
+- se ha creado la página de simulador a falta de hacer el renderizado de los componentes para la simulación.
 
 ## 02 de mayo de 2026
 - se ha implementado el metodo connect en `GenRF` para conectar la salida de este con la entrada del transceptor.

@@ -1,0 +1,26 @@
+main {
+    display: grid;
+    grid-template-rows: 320px 260px;
+    grid-template-areas: "genrf genrf genrf"
+                         "transceiver tims tims";
+    margin: 1rem;
+    gap: 1rem;;
+}
+
+.container {
+    border: 1px solid #ccc;
+    display: grid;
+    place-content: center;
+}
+
+#genrf-container {
+    grid-area: genrf;
+}
+
+#transceiver-container {
+    grid-area: transceiver;
+}
+
+#tims-container {
+    grid-area: tims;
+}
