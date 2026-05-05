@@ -10,6 +10,10 @@ class Transceiver {
     rfSignal = RfSignal.empty();
     basebandAudioSignal = BasebandAudioSignal.noSignal();
 
+    constructor() {
+        this.render();
+    }
+
     onUpdate = () => {
         console.log('Transceiver output', this.output());
     };
@@ -77,6 +81,18 @@ class Transceiver {
 
     connect(onUpdate) {
         this.onUpdate = onUpdate;
+    }
+
+    // RENDER
+    render() {
+        const $container = document.getElementById('transceiver-container');
+        
+        fetch('templates/transceiver.html')
+            .then(response => response.text())
+            .then(html => {
+                $container.innerHTML = html;
+            })
+            .catch(error => console.error('Error loading transceiver template:', error));
     }
 
     output() {

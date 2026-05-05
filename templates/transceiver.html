@@ -1,0 +1,64 @@
+<div id="transceptor">
+    <div id="transceptor-top-panel">
+        <div id="transceptor-display">
+            <span id="transceptor-freq">300.00</span> <span id="transceptor-freq-unit">MHz</span>
+        </div>
+    </div>
+
+    <div id="transceptor-bottom-panel">
+        <div class="module transceptor-pot-module">
+            <span class="module-name">AF</span>
+            <div id="af-pot" class="pot-container">
+                <div class="pot-ticks" id="afTicks"></div>
+
+                <div class="pot-knob" id="afKnob">
+                    <div class="pot-trimmer-slot"></div>
+                    <div class="pot-indicator"></div>
+                </div>
+
+                <span class="pot-value" id="afValueDisplay">0%</span>
+            </div>
+        </div>
+
+        <div class="module transceptor-switch-module">
+            <span class="module-name">AGC</span>
+            <div class="module-switch">
+                <span>ON</span>
+                <input type="checkbox">
+                <span>OFF</span>
+            </div>
+        </div>
+
+        <div class="module transceptor-pot-module">
+            <span class="module-name">SQ</span>
+            <div id="sq-pot" class="pot-container">
+                <div class="pot-ticks" id="sqTicks"></div>
+
+                <div class="pot-knob" id="sqKnob">
+                    <div class="pot-trimmer-slot"></div>
+                    <div class="pot-indicator"></div>
+                </div>
+                <span class="pot-value" id="sqValueDisplay">0%</span>
+            </div>
+            <div id="sq-led" class="led-yellow"></div>
+        </div>
+
+        <div class="module transceptor-switch-module">
+            <span class="module-name">LOC/REM</span>
+            <div class="module-switch">
+                <span>LOC</span>
+                <input type="checkbox">
+                <span>REM</span>
+            </div>
+        </div>
+
+        <div class="module transceptor-switch-module">
+            <span class="module-name">POWER</span>
+            <div class="module-switch">
+                <span>ON</span>
+                <input type="checkbox">
+                <span>OFF</span>
+            </div>
+        </div>
+    </div>
+</div>
