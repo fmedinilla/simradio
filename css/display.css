@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'DSEG';
+    src: url(../fonts/DSEG7Modern-Regular.ttf);
+    font-weight: normal;
+}
+
+.display {
+    display: inline-grid;
+    place-items: center;
+    background-color: black;
+    font-size: 50px;
+    width: fit-content;
+    position: absolute;
+}
+
+.display-front, .display-back {
+    font-family: 'DSEG', monospace;
+}
+
+.display-front {
+    grid-area: 1 / 1;
+    color: red;
+    z-index: 2;
+}
+
+.display-back {
+    grid-area: 1 / 1;
+    color: rgba(255, 0, 0, 0.2);
+    z-index: 1;
+}

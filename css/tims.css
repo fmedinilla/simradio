@@ -1,0 +1,17 @@
+#tims__display-audio-level {
+    top: 17%;
+    left: 16%;
+    width: 21%;
+    height: 19%;
+    font-size: 3.5vw;
+    letter-spacing: 3%;
+}
+
+#tims__display-audio-freq {
+    top: 17%;
+    left: 40%;
+    width: 25.5%;
+    height: 19%;
+    font-size: 3.5vw;
+    letter-spacing: 3%;
+}

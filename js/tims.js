@@ -125,8 +125,41 @@ class TIMS {
     render() {
         const $container = document.getElementById('tims-container');
         $container.innerHTML = '';
+
         const $image = document.createElement('img');
         $image.src = 'assets/tims.jpeg';
         $container.appendChild($image);
+
+        // display audio level
+        const $displayAudioLevel = document.createElement('div');
+        $displayAudioLevel.classList.add('display');
+        $displayAudioLevel.id = 'tims__display-audio-level'
+
+        const $displaybackAudioLevel = document.createElement('div');
+        $displaybackAudioLevel.classList.add('display-back');
+        $displaybackAudioLevel.innerText = '888.8';
+        $displayAudioLevel.appendChild($displaybackAudioLevel);
+
+        const $displayfrontAudioLevel = document.createElement('div');
+        $displayfrontAudioLevel.classList.add('display-front');
+        $displayfrontAudioLevel.innerText = '-13.0';
+        $displayAudioLevel.appendChild($displayfrontAudioLevel);
+        $container.appendChild($displayAudioLevel);
+
+        // display audio frequency
+        const $displayAudioFreq = document.createElement('div');
+        $displayAudioFreq.classList.add('display');
+        $displayAudioFreq.id = 'tims__display-audio-freq';
+
+        const $displaybackAudioFreq = document.createElement('div');
+        $displaybackAudioFreq.classList.add('display-back');
+        $displaybackAudioFreq.innerText = '88888';
+        $displayAudioFreq.appendChild($displaybackAudioFreq);
+
+        const $displayfrontAudioFreq = document.createElement('div');
+        $displayfrontAudioFreq.classList.add('display-front');
+        $displayfrontAudioFreq.innerText = '!1000';
+        $displayAudioFreq.appendChild($displayfrontAudioFreq);
+        $container.appendChild($displayAudioFreq);
     }
 }
