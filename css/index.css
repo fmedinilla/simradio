@@ -1,16 +1,30 @@
 main {
     display: grid;
-    grid-template-rows: 320px 260px;
-    grid-template-areas: "genrf genrf genrf"
-                         "transceiver tims tims";
-    margin: 1rem;
-    gap: 1rem;;
+    gap: 1rem;
+    margin: 1rem auto;
+    
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr auto;
+
+    /* Definimos las filas */
+    grid-template-areas: 
+        "genrf genrf genrf"
+        "transceiver tims tims";
+
+    max-width: 90%;
+    width: 100vw;
 }
 
 .container {
-    border: 1px solid #ccc;
     display: grid;
-    place-content: center;
+
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        border-radius: 8px;
+    }
 }
 
 #genrf-container {
@@ -23,4 +37,5 @@ main {
 
 #tims-container {
     grid-area: tims;
+    grid-column: span 2;
 }

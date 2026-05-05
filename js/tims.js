@@ -90,6 +90,10 @@ class TIMS {
     monitorStarted = false;
     audioMonitor = new TimsAudioMonitor();
 
+    constructor() {
+        this.render();
+    }
+
     processSignal(basebandAudioSignal) {
         const MAX_LEVEL = 6;
         const MIN_LEVEL = -35;
@@ -102,6 +106,8 @@ class TIMS {
         let signalQuality = (audio_level - MIN_LEVEL) / (MAX_LEVEL - MIN_LEVEL); // Valor entre 0.0 y 1.0
         this.audioMonitor.updateLevel(signalQuality);
         this.audioMonitor.changeFreq(audio_freq);
+
+        this.render();
     }
 
     turnOnTIMS() {
@@ -112,5 +118,15 @@ class TIMS {
         }
 
         this.audioMonitor.toggle();
+        this.render();
+    }
+
+    // RENDER
+    render() {
+        const $container = document.getElementById('tims-container');
+        $container.innerHTML = '';
+        const $image = document.createElement('img');
+        $image.src = 'assets/tims.jpeg';
+        $container.appendChild($image);
     }
 }

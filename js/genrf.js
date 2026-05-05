@@ -34,9 +34,15 @@ class GenRF {
         console.log('GenRF output', this.output());
     }
 
+    // CONSTRUCTOR
+    constructor() {
+        this.render();
+    }
+
     resetState() {
         Object.assign(this, DEFAULT_GENRF_STATE);
         this.onUpdate();
+        this.render();
     }
 
     // GENERATOR
@@ -44,6 +50,7 @@ class GenRF {
         this.resetState();
         this.power = !this.power;
         this.onUpdate();
+        this.render();
     }
 
     parseInput() {
@@ -66,6 +73,7 @@ class GenRF {
 
         this.setInputMode(GenRFInputMode.NONE);
         this.onUpdate();
+        this.render();
     }
 
     // UNITS
@@ -96,12 +104,14 @@ class GenRF {
         if (this.input_mode === GenRFInputMode.NONE) return;
         this.input_value += value;
         // console.log(this.input_value);
+        this.render();
     }
 
     erase() {
         if (!this.power) return;
         if (this.input_mode === GenRFInputMode.NONE) return;
         this.input_value = this.input_value.slice(0, -1);
+        this.render();
     }
 
     // INPUT MODES
@@ -109,6 +119,7 @@ class GenRF {
         if (!this.power) return;
         this.input_mode = input_mode;
         this.input_value = '';
+        this.render();
     }
     
     // MODULATION
@@ -116,18 +127,21 @@ class GenRF {
         if (!this.power) return;
         this.mod.on = !this.mod.on;
         this.onUpdate();
+        this.render();
     }
 
     incrementModulation() {
         if (!this.power) return;
         this.mod.depth = Math.min(100, this.mod.depth + 1);
         this.onUpdate();
+        this.render();
     }
 
     decrementModulation() {
         if (!this.power) return;
         this.mod.depth = Math.max(0, this.mod.depth - 1);
         this.onUpdate();
+        this.render();
     }
     
     // RF
@@ -135,18 +149,21 @@ class GenRF {
         if (!this.power) return;
         this.rf.on = !this.rf.on;
         this.onUpdate();
+        this.render();
     }
 
     incrementRf() {
         if (!this.power) return;
         this.rf.amplitude = Math.min(0, this.rf.amplitude + 1);
         this.onUpdate();
+        this.render();
     }
 
     decrementRf() {
         if (!this.power) return;
         this.rf.amplitude = Math.max(-120, this.rf.amplitude - 1);
         this.onUpdate();
+        this.render();
     }
 
     // DISPLAY
@@ -191,6 +208,15 @@ class GenRF {
 
     connect(onUpdate) {
         this.onUpdate = onUpdate;
+    }
+
+    // RENDER
+    render() {
+        const $container = document.getElementById('genrf-container');
+        $container.innerHTML = '';
+        const $image = document.createElement('img');
+        $image.src = 'assets/genrf.jpeg';
+        $container.appendChild($image);
     }
 
     // OUTPUT
