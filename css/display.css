@@ -28,3 +28,7 @@
     color: rgba(255, 0, 0, 0.2);
     z-index: 1;
 }
+
+.display-off > .display-front {
+    color: rgba(255, 0, 0, 0.1);
+}

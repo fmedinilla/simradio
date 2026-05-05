@@ -89,7 +89,7 @@ class TimsAudioMonitor {
 class TIMS {
     monitorStarted = false;
     audioMonitor = new TimsAudioMonitor();
-
+    powerOn = false;
     audio_level = -3;
     audio_freq = 1000;
 
@@ -113,7 +113,7 @@ class TIMS {
         this.render();
     }
 
-    turnOnTIMS() {
+    toggleAudio() {
         if (!this.monitorStarted) {
             this.audioMonitor.start();
             this.monitorStarted = true;
@@ -121,6 +121,11 @@ class TIMS {
         }
 
         this.audioMonitor.toggle();
+    }
+
+    togglePower() {
+        this.powerOn = !this.powerOn;
+        this.toggleAudio();
         this.render();
     }
 
@@ -178,5 +183,22 @@ class TIMS {
         $displayfrontAudioFreq.innerText = this.getAudioFreqDisplayValue();
         $displayAudioFreq.appendChild($displayfrontAudioFreq);
         $container.appendChild($displayAudioFreq);
+
+        if (!this.powerOn) {
+            $displayAudioLevel.classList.add('display-off');
+            $displayfrontAudioLevel.innerText = '';
+            $displayAudioFreq.classList.add('display-off');
+            $displayfrontAudioFreq.innerText = '';
+        }
+
+        // power button
+        const $powerButton = document.createElement('button');
+        $powerButton.id = 'tims__power-button';
+        $powerButton.classList.add('button');
+        $powerButton.innerText = 'ON';
+        $powerButton.addEventListener('click', () => {
+            this.togglePower();
+        });
+        $container.appendChild($powerButton);
     }
 }
