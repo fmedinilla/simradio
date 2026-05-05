@@ -1,6 +1,10 @@
 # Simradio
 Entorno web para simulación de pruebas Rx en transceptores radio.
 
+## 📸 Vista previa
+![Captura del Simulador](./images/screenshot.png)
+*Interfaz principal del simulador*
+
 ## 🚀 Inicio Rápido
 1. Clona el repo.
 2. Abre `index.html` en tu navegador.
