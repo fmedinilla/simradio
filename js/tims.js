@@ -90,6 +90,9 @@ class TIMS {
     monitorStarted = false;
     audioMonitor = new TimsAudioMonitor();
 
+    audio_level = -3;
+    audio_freq = 1000;
+
     constructor() {
         this.render();
     }
@@ -100,12 +103,12 @@ class TIMS {
 
         const audioMonitor = new TimsAudioMonitor();
 
-        const audio_level = basebandAudioSignal.audio_level;
-        const audio_freq = basebandAudioSignal.audio_freq;
+        this.audio_level = basebandAudioSignal.audio_level;
+        this.audio_freq = basebandAudioSignal.audio_freq;
 
-        let signalQuality = (audio_level - MIN_LEVEL) / (MAX_LEVEL - MIN_LEVEL); // Valor entre 0.0 y 1.0
+        let signalQuality = (this.audio_level - MIN_LEVEL) / (MAX_LEVEL - MIN_LEVEL); // Valor entre 0.0 y 1.0
         this.audioMonitor.updateLevel(signalQuality);
-        this.audioMonitor.changeFreq(audio_freq);
+        this.audioMonitor.changeFreq(this.audio_freq);
 
         this.render();
     }
@@ -119,6 +122,20 @@ class TIMS {
 
         this.audioMonitor.toggle();
         this.render();
+    }
+
+    getAudioLevelDisplayValue() {
+        // pattern 888.8
+        const value = this.audio_level.toFixed(1);
+        const paddedValue = value.padStart(5, '!'); // Rellenar con '8' a la izquierda hasta tener 5 caracteres
+        return paddedValue;
+    }
+
+    getAudioFreqDisplayValue() {
+        // pattern 88888
+        const value = Math.round(this.audio_freq).toString();
+        const paddedValue = value.padStart(5, '!'); // Rellenar con '8' a la izquierda hasta tener 5 caracteres
+        return paddedValue;
     }
 
     // RENDER
@@ -142,7 +159,7 @@ class TIMS {
 
         const $displayfrontAudioLevel = document.createElement('div');
         $displayfrontAudioLevel.classList.add('display-front');
-        $displayfrontAudioLevel.innerText = '-13.0';
+        $displayfrontAudioLevel.innerText = this.getAudioLevelDisplayValue();
         $displayAudioLevel.appendChild($displayfrontAudioLevel);
         $container.appendChild($displayAudioLevel);
 
@@ -158,7 +175,7 @@ class TIMS {
 
         const $displayfrontAudioFreq = document.createElement('div');
         $displayfrontAudioFreq.classList.add('display-front');
-        $displayfrontAudioFreq.innerText = '!1000';
+        $displayfrontAudioFreq.innerText = this.getAudioFreqDisplayValue();
         $displayAudioFreq.appendChild($displayfrontAudioFreq);
         $container.appendChild($displayAudioFreq);
     }
