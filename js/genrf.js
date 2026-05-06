@@ -201,9 +201,58 @@ class GenRF {
     render() {
         const $container = document.getElementById('genrf-container');
         $container.innerHTML = '';
+
         const $image = document.createElement('img');
         $image.src = 'assets/genrf.jpeg';
         $container.appendChild($image);
+
+        // display modulation
+        const $displayModulation = document.createElement('div');
+        $displayModulation.classList.add('display');
+        $displayModulation.id = 'genrf__display-modulation'
+
+        const $displaybackModulation = document.createElement('div');
+        $displaybackModulation.classList.add('display-back');
+        $displaybackModulation.innerText = '88';
+        $displayModulation.appendChild($displaybackModulation);
+
+        const $displayfrontModulation = document.createElement('div');
+        $displayfrontModulation.classList.add('display-front');
+        $displayfrontModulation.innerText = this.modulationDisplay();
+        $displayModulation.appendChild($displayfrontModulation);
+        $container.appendChild($displayModulation);
+
+        // display frequency
+        const $displayFrequency = document.createElement('div');
+        $displayFrequency.classList.add('display');
+        $displayFrequency.id = 'genrf__display-frequency'
+
+        const $displaybackFrequency = document.createElement('div');
+        $displaybackFrequency.classList.add('display-back');
+        $displaybackFrequency.innerText = '888.888';
+        $displayFrequency.appendChild($displaybackFrequency);
+
+        const $displayfrontFrequency = document.createElement('div');
+        $displayfrontFrequency.classList.add('display-front');
+        $displayfrontFrequency.innerText = this.frequencyDisplay();
+        $displayFrequency.appendChild($displayfrontFrequency);
+        $container.appendChild($displayFrequency);
+
+        // display amplitude
+        const $displayAmplitude = document.createElement('div');
+        $displayAmplitude.classList.add('display');
+        $displayAmplitude.id = 'genrf__display-amplitude'
+
+        const $displaybackAmplitude = document.createElement('div');
+        $displaybackAmplitude.classList.add('display-back');
+        $displaybackAmplitude.innerText = '8888';
+        $displayAmplitude.appendChild($displaybackAmplitude);
+
+        const $displayfrontAmplitude = document.createElement('div');
+        $displayfrontAmplitude.classList.add('display-front');
+        $displayfrontAmplitude.innerText = this.amplitudeDisplay();
+        $displayAmplitude.appendChild($displayfrontAmplitude);
+        $container.appendChild($displayAmplitude);
     }
 
     // OUTPUT
