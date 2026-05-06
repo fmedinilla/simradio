@@ -87,13 +87,21 @@ class TimsAudioMonitor {
 }
 
 class TIMS {
-    monitorStarted = false;
-    audioMonitor = new TimsAudioMonitor();
-    powerOn = false;
-    audio_level = -3;
-    audio_freq = 1000;
+    state = {
+        monitorStarted: false,
+        audioMonitor: new TimsAudioMonitor(),
+        powerOn: false,
+        audio_level: 47,
+        audio_freq: 0,
+    };
 
     constructor() {
+        this.render();
+    }
+
+    // STATE
+    updateState(newState) {
+        this.state = { ...this.state, ...newState };
         this.render();
     }
 
@@ -103,42 +111,41 @@ class TIMS {
 
         const audioMonitor = new TimsAudioMonitor();
 
-        this.audio_level = basebandAudioSignal.audio_level;
-        this.audio_freq = basebandAudioSignal.audio_freq;
+        this.updateState({
+            audio_level: basebandAudioSignal.audio_level,
+            audio_freq: basebandAudioSignal.audio_freq
+        });
 
-        let signalQuality = (this.audio_level - MIN_LEVEL) / (MAX_LEVEL - MIN_LEVEL); // Valor entre 0.0 y 1.0
-        this.audioMonitor.updateLevel(signalQuality);
-        this.audioMonitor.changeFreq(this.audio_freq);
-
-        this.render();
+        let signalQuality = (this.state.audio_level - MIN_LEVEL) / (MAX_LEVEL - MIN_LEVEL); // Valor entre 0.0 y 1.0
+        this.state.audioMonitor.updateLevel(signalQuality);
+        this.state.audioMonitor.changeFreq(this.state.audio_freq);
     }
 
     toggleAudio() {
-        if (!this.monitorStarted) {
-            this.audioMonitor.start();
-            this.monitorStarted = true;
+        if (!this.state.monitorStarted) {
+            this.state.audioMonitor.start();
+            this.updateState({ monitorStarted: true });
             return;
         }
 
-        this.audioMonitor.toggle();
+        this.state.audioMonitor.toggle();
     }
 
     togglePower() {
-        this.powerOn = !this.powerOn;
+        this.updateState({ powerOn: !this.state.powerOn });
         this.toggleAudio();
-        this.render();
     }
 
     getAudioLevelDisplayValue() {
         // pattern 888.8
-        const value = this.audio_level.toFixed(1);
+        const value = this.state.audio_level.toFixed(1);
         const paddedValue = value.padStart(5, '!'); // Rellenar con '8' a la izquierda hasta tener 5 caracteres
         return paddedValue;
     }
 
     getAudioFreqDisplayValue() {
         // pattern 88888
-        const value = Math.round(this.audio_freq).toString();
+        const value = Math.round(this.state.audio_freq).toString();
         const paddedValue = value.padStart(5, '!'); // Rellenar con '8' a la izquierda hasta tener 5 caracteres
         return paddedValue;
     }
@@ -184,7 +191,7 @@ class TIMS {
         $displayAudioFreq.appendChild($displayfrontAudioFreq);
         $container.appendChild($displayAudioFreq);
 
-        if (!this.powerOn) {
+        if (!this.state.powerOn) {
             $displayAudioLevel.classList.add('display-off');
             $displayfrontAudioLevel.innerText = '';
             $displayAudioFreq.classList.add('display-off');
