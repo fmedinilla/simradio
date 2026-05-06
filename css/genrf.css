@@ -1,0 +1,26 @@
+#genrf__display-modulation {
+    top: 18.5%;
+    left: 29.5%;
+    width: 8%;
+    height: 16%;
+    font-size: 4vw;
+    letter-spacing: 3%;
+}
+
+#genrf__display-frequency {
+    top: 18.5%;
+    left: 44.5%;
+    width: 26.5%;
+    height: 16%;
+    font-size: 4vw;
+    letter-spacing: 10%;
+}
+
+#genrf__display-amplitude {
+    top: 18.5%;
+    left: 76%;
+    width: 13%;
+    height: 16%;
+    font-size: 3.9vw;
+    letter-spacing: -10%;
+}
