@@ -34,173 +34,160 @@ class GenRF {
         console.log('GenRF output', this.output());
     }
 
+    state = {};
+
     // CONSTRUCTOR
     constructor() {
+        this.state = { ...DEFAULT_GENRF_STATE };
+        this.render();
+    }
+
+    // STATE
+    updateState(newState) {
+        this.state = { ...this.state, ...newState };
+        this.onUpdate();
         this.render();
     }
 
     resetState() {
-        Object.assign(this, DEFAULT_GENRF_STATE);
-        this.onUpdate();
-        this.render();
+        this.updateState({ ...DEFAULT_GENRF_STATE });
     }
 
     // GENERATOR
     togglePower() {
         this.resetState();
-        this.power = !this.power;
-        this.onUpdate();
-        this.render();
+        this.updateState({ power: !this.state.power });
     }
 
     parseInput() {
-        if (this.input_mode === GenRFInputMode.NONE) return;
+        if (this.state.input_mode === GenRFInputMode.NONE) return;
 
-        const value = parseFloat(this.input_value);
+        const value = parseFloat(this.state.input_value);
         if (isNaN(value)) return;
 
-        switch (this.input_mode) {
+        switch (this.state.input_mode) {
             case GenRFInputMode.FREQUENCY:
-                this.carrier_freq = value;
+                this.state.carrier_freq = value;
                 break;
             case GenRFInputMode.AMPLITUDE:
-                this.rf.amplitude = value;
+                this.state.rf.amplitude = value;
                 break;
             case GenRFInputMode.MODULATION:
-                this.mod.depth = value;
+                this.state.mod.depth = value;
                 break;
         }
 
         this.setInputMode(GenRFInputMode.NONE);
-        this.onUpdate();
-        this.render();
     }
 
     // UNITS
     mhz() {
-        if (!this.power) return;
-        if (this.input_mode !== GenRFInputMode.FREQUENCY) return;
-        this.input_unit = GenRFUnits.MHZ;
+        if (!this.state.power) return;
+        if (this.state.input_mode !== GenRFInputMode.FREQUENCY) return;
+        this.updateState({ input_unit: GenRFUnits.MHZ });
         this.parseInput();
     }
 
     dBm() {
-        if (!this.power) return;
-        if (this.input_mode !== GenRFInputMode.AMPLITUDE) return;
-        this.input_unit = GenRFUnits.DBM;
+        if (!this.state.power) return;
+        if (this.state.input_mode !== GenRFInputMode.AMPLITUDE) return;
+        this.updateState({ input_unit: GenRFUnits.DBM });
         this.parseInput();
     }
 
     percent() {
-        if (!this.power) return;
-        if (this.input_mode !== GenRFInputMode.MODULATION) return;
-        this.input_unit = GenRFUnits.PERCENT;
+        if (!this.state.power) return;
+        if (this.state.input_mode !== GenRFInputMode.MODULATION) return;
+        this.updateState({ input_unit: GenRFUnits.PERCENT });
         this.parseInput();
     }
 
     // INPUT
     pressNumpad(value) {
-        if (!this.power) return;
-        if (this.input_mode === GenRFInputMode.NONE) return;
-        this.input_value += value;
-        // console.log(this.input_value);
-        this.render();
+        if (!this.state.power) return;
+        if (this.state.input_mode === GenRFInputMode.NONE) return;
+        this.updateState({ input_value: this.state.input_value + value });
     }
 
     erase() {
-        if (!this.power) return;
-        if (this.input_mode === GenRFInputMode.NONE) return;
-        this.input_value = this.input_value.slice(0, -1);
-        this.render();
+        if (!this.state.power) return;
+        if (this.state.input_mode === GenRFInputMode.NONE) return;
+        this.updateState({ input_value: this.state.input_value.slice(0, -1) });
     }
 
     // INPUT MODES
     setInputMode(input_mode) {
-        if (!this.power) return;
-        this.input_mode = input_mode;
-        this.input_value = '';
-        this.render();
+        if (!this.state.power) return;
+        this.updateState({ input_mode, input_value: '' });
     }
     
     // MODULATION
     toggleModulation() {
-        if (!this.power) return;
-        this.mod.on = !this.mod.on;
-        this.onUpdate();
-        this.render();
+        if (!this.state.power) return;
+        this.updateState({ mod: { ...this.state.mod, on: !this.state.mod.on } });
     }
 
     incrementModulation() {
-        if (!this.power) return;
-        this.mod.depth = Math.min(100, this.mod.depth + 1);
-        this.onUpdate();
-        this.render();
+        if (!this.state.power) return;
+        this.updateState({ mod: { ...this.state.mod, depth: Math.min(100, this.state.mod.depth + 1) } });
     }
 
     decrementModulation() {
-        if (!this.power) return;
-        this.mod.depth = Math.max(0, this.mod.depth - 1);
-        this.onUpdate();
-        this.render();
+        if (!this.state.power) return;
+        this.updateState({ mod: { ...this.state.mod, depth: Math.max(0, this.state.mod.depth - 1) } });
     }
     
     // RF
     toggleRf() {
-        if (!this.power) return;
-        this.rf.on = !this.rf.on;
-        this.onUpdate();
-        this.render();
+        if (!this.state.power) return;
+        this.updateState({ rf: { ...this.state.rf, on: !this.state.rf.on } });
     }
 
     incrementRf() {
-        if (!this.power) return;
-        this.rf.amplitude = Math.min(0, this.rf.amplitude + 1);
-        this.onUpdate();
-        this.render();
+        if (!this.state.power) return;
+        this.updateState({ rf: { ...this.state.rf, amplitude: Math.min(0, this.state.rf.amplitude + 1) } });
     }
 
     decrementRf() {
-        if (!this.power) return;
-        this.rf.amplitude = Math.max(-120, this.rf.amplitude - 1);
-        this.onUpdate();
-        this.render();
+        if (!this.state.power) return;
+        this.updateState({ rf: { ...this.state.rf, amplitude: Math.max(-120, this.state.rf.amplitude - 1) } });
     }
 
     // DISPLAY
     modulationDisplay() {
-        if (!this.power) return '';
+        if (!this.state.power) return '';
         let displayValue;
 
-        if (this.input_mode === GenRFInputMode.NONE) {
-            displayValue = this.mod.depth;
-        } else if (this.input_mode === GenRFInputMode.MODULATION) {
-            displayValue = this.input_value;
+        if (this.state.input_mode === GenRFInputMode.NONE) {
+            displayValue = this.state.mod.depth;
+        } else if (this.state.input_mode === GenRFInputMode.MODULATION) {
+            displayValue = this.state.input_value;
         }
 
         return displayValue.toString().padStart(2, '!');
     }
 
     frequencyDisplay() { // 000.000
-        if (!this.power) return '';
+        if (!this.state.power) return '';
         let displayValue;
 
-        if (this.input_mode === GenRFInputMode.NONE) {
-            displayValue = this.carrier_freq.toFixed(3);
-        } else if (this.input_mode === GenRFInputMode.FREQUENCY) {
-            displayValue = this.input_value;
+        if (this.state.input_mode === GenRFInputMode.NONE) {
+            displayValue = this.state.carrier_freq.toFixed(3);
+        } else if (this.state.input_mode === GenRFInputMode.FREQUENCY) {
+            displayValue = this.state.input_value;
         }
 
         return displayValue.toString().padStart(7, '!');
     }
 
     amplitudeDisplay() {
-        if (!this.power) return '';
+        if (!this.state.power) return '';
         let displayValue;
 
-        if (this.input_mode === GenRFInputMode.NONE) {
-            displayValue = this.rf.amplitude;
-        } else if (this.input_mode === GenRFInputMode.AMPLITUDE) {
-            displayValue = this.input_value;
+        if (this.state.input_mode === GenRFInputMode.NONE) {
+            displayValue = this.state.rf.amplitude;
+        } else if (this.state.input_mode === GenRFInputMode.AMPLITUDE) {
+            displayValue = this.state.input_value;
         }
 
         return displayValue.toString().padStart(4, '!');
@@ -221,14 +208,14 @@ class GenRF {
 
     // OUTPUT
     output() {
-        if (!this.power) return RfSignal.empty();
-        if (!this.rf.on) return RfSignal.empty();
+        if (!this.state.power) return RfSignal.empty();
+        if (!this.state.rf.on) return RfSignal.empty();
 
         return RfSignal.new(
-            this.carrier_freq,
-            this.rf.amplitude,
-            this.mod.on ? this.tone_freq : null,
-            this.mod.on ? this.mod.depth : null
+            this.state.carrier_freq,
+            this.state.rf.amplitude,
+            this.state.mod.on ? this.state.tone_freq : null,
+            this.state.mod.on ? this.state.mod.depth : null
         );
     }
 }
