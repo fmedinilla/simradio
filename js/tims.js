@@ -89,6 +89,9 @@ class TimsAudioMonitor {
 class TIMS {
     monitorStarted = false;
     audioMonitor = new TimsAudioMonitor();
+    powerOn = false;
+    audio_level = -3;
+    audio_freq = 1000;
 
     constructor() {
         this.render();
@@ -100,17 +103,17 @@ class TIMS {
 
         const audioMonitor = new TimsAudioMonitor();
 
-        const audio_level = basebandAudioSignal.audio_level;
-        const audio_freq = basebandAudioSignal.audio_freq;
+        this.audio_level = basebandAudioSignal.audio_level;
+        this.audio_freq = basebandAudioSignal.audio_freq;
 
-        let signalQuality = (audio_level - MIN_LEVEL) / (MAX_LEVEL - MIN_LEVEL); // Valor entre 0.0 y 1.0
+        let signalQuality = (this.audio_level - MIN_LEVEL) / (MAX_LEVEL - MIN_LEVEL); // Valor entre 0.0 y 1.0
         this.audioMonitor.updateLevel(signalQuality);
-        this.audioMonitor.changeFreq(audio_freq);
+        this.audioMonitor.changeFreq(this.audio_freq);
 
         this.render();
     }
 
-    turnOnTIMS() {
+    toggleAudio() {
         if (!this.monitorStarted) {
             this.audioMonitor.start();
             this.monitorStarted = true;
@@ -118,15 +121,84 @@ class TIMS {
         }
 
         this.audioMonitor.toggle();
+    }
+
+    togglePower() {
+        this.powerOn = !this.powerOn;
+        this.toggleAudio();
         this.render();
+    }
+
+    getAudioLevelDisplayValue() {
+        // pattern 888.8
+        const value = this.audio_level.toFixed(1);
+        const paddedValue = value.padStart(5, '!'); // Rellenar con '8' a la izquierda hasta tener 5 caracteres
+        return paddedValue;
+    }
+
+    getAudioFreqDisplayValue() {
+        // pattern 88888
+        const value = Math.round(this.audio_freq).toString();
+        const paddedValue = value.padStart(5, '!'); // Rellenar con '8' a la izquierda hasta tener 5 caracteres
+        return paddedValue;
     }
 
     // RENDER
     render() {
         const $container = document.getElementById('tims-container');
         $container.innerHTML = '';
+
         const $image = document.createElement('img');
         $image.src = 'assets/tims.jpeg';
         $container.appendChild($image);
+
+        // display audio level
+        const $displayAudioLevel = document.createElement('div');
+        $displayAudioLevel.classList.add('display');
+        $displayAudioLevel.id = 'tims__display-audio-level'
+
+        const $displaybackAudioLevel = document.createElement('div');
+        $displaybackAudioLevel.classList.add('display-back');
+        $displaybackAudioLevel.innerText = '888.8';
+        $displayAudioLevel.appendChild($displaybackAudioLevel);
+
+        const $displayfrontAudioLevel = document.createElement('div');
+        $displayfrontAudioLevel.classList.add('display-front');
+        $displayfrontAudioLevel.innerText = this.getAudioLevelDisplayValue();
+        $displayAudioLevel.appendChild($displayfrontAudioLevel);
+        $container.appendChild($displayAudioLevel);
+
+        // display audio frequency
+        const $displayAudioFreq = document.createElement('div');
+        $displayAudioFreq.classList.add('display');
+        $displayAudioFreq.id = 'tims__display-audio-freq';
+
+        const $displaybackAudioFreq = document.createElement('div');
+        $displaybackAudioFreq.classList.add('display-back');
+        $displaybackAudioFreq.innerText = '88888';
+        $displayAudioFreq.appendChild($displaybackAudioFreq);
+
+        const $displayfrontAudioFreq = document.createElement('div');
+        $displayfrontAudioFreq.classList.add('display-front');
+        $displayfrontAudioFreq.innerText = this.getAudioFreqDisplayValue();
+        $displayAudioFreq.appendChild($displayfrontAudioFreq);
+        $container.appendChild($displayAudioFreq);
+
+        if (!this.powerOn) {
+            $displayAudioLevel.classList.add('display-off');
+            $displayfrontAudioLevel.innerText = '';
+            $displayAudioFreq.classList.add('display-off');
+            $displayfrontAudioFreq.innerText = '';
+        }
+
+        // power button
+        const $powerButton = document.createElement('button');
+        $powerButton.id = 'tims__power-button';
+        $powerButton.classList.add('button');
+        $powerButton.innerText = 'ON';
+        $powerButton.addEventListener('click', () => {
+            this.togglePower();
+        });
+        $container.appendChild($powerButton);
     }
 }

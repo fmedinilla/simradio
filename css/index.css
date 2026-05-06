@@ -17,6 +17,8 @@ main {
 
 .container {
     display: grid;
+    position: relative;
+    line-height: 0;
 
     img {
         width: 100%;
