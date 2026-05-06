@@ -1,5 +1,15 @@
 # DEVLOG
 
+## 06 de mayo de 2026
+- se trabaja en la reactividad del estado de las clases `GenRF`, `Transceiver` y `TIMS`.
+- se actualiza la ficha técnica del proyecto y el screenshoot del README.
+
+## 05 de mayo de 2026
+- se trabaja en el borrador de la ficha técnica del proyecto.
+- se actualiza el README.
+- se implementan los métodos de renderizado.
+- se implementan los displays y el boton de on/off del `TIMS`.
+
 ## 03 de mayo de 2026
 - se ha creado la página de about.
 - se ha implementado una plantilla para la cabecera de las páginas.
