@@ -11,6 +11,8 @@ La solución integra una cadena de procesado de señal compuesta por tres bloque
 
 Desde el generador de radiofrecuencia podemos crear una señal RF, que será la entrada del transceptor. Éste, procesará la señal de entrada y otorgará una señal de audio. Con el TIMS, veremos la frecuencia del tono y la calidad.
 
+La reactividad de los componentes se gestiona mediante el uso de callbacks. Cada bloque expone un método de conexión que permite vincularlo a otro; así, ante cualquier cambio en el estado interno, el bloque no solo ejecuta su propio método `render`, sino que también dispara la función de actualización del bloque conectado, garantizando la sincronización de la interfaz.
+
 ## Stack detallado
 - **Lógica de Simulación**: JavaScript ES6+ (Programación Orientada a Objetos).
 - **Interfaz**: HTML5 y CSS3 con diseño modular.
