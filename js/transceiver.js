@@ -234,8 +234,6 @@ class Transceiver {
                     $remoteSwitch.disabled = true;
                     $agcSwitch.disabled = true;
                 }
-
-                console.log('transceiver state after render', this.state);
             })
             .catch(error => console.error('Error loading transceiver template:', error));
     }
