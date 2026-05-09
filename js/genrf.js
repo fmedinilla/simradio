@@ -253,6 +253,266 @@ class GenRF {
         $displayfrontAmplitude.innerText = this.amplitudeDisplay();
         $displayAmplitude.appendChild($displayfrontAmplitude);
         $container.appendChild($displayAmplitude);
+
+        // power button
+        const $powerButton = document.createElement('button');
+        $powerButton.id = 'genrf__power-button';
+        $powerButton.classList.add('button', 'button--small');
+        $powerButton.innerText = 'ON';
+        $powerButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($powerButton);
+
+        // am modulation button
+        const $modButton = document.createElement('button');
+        $modButton.id = 'genrf__mod-button';
+        $modButton.classList.add('button', 'button--square');
+        $modButton.innerText = 'AM';
+        $modButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($modButton);
+
+        // toggle modulation button
+        const $toggleModButton = document.createElement('button');
+        $toggleModButton.id = 'genrf__toggle-mod-button';
+        $toggleModButton.classList.add('button', 'button--small');
+        $toggleModButton.innerText = 'OFF';
+        $toggleModButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($toggleModButton);
+
+        // increment modulation button
+        const $incrementModButton = document.createElement('button');
+        $incrementModButton.id = 'genrf__increment-mod-button';
+        $incrementModButton.classList.add('button', 'button--small');
+        $incrementModButton.innerText = '+';
+        $incrementModButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($incrementModButton);
+
+        // decrement modulation button
+        const $decrementModButton = document.createElement('button');
+        $decrementModButton.id = 'genrf__decrement-mod-button';
+        $decrementModButton.classList.add('button', 'button--small');
+        $decrementModButton.innerText = '-';
+        $decrementModButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($decrementModButton);
+
+        // frequency button
+        const $frequencyButton = document.createElement('button');
+        $frequencyButton.id = 'genrf__frequency-button';
+        $frequencyButton.classList.add('button', 'button--large');
+        $frequencyButton.innerText = 'FREQUENCY';
+        $frequencyButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($frequencyButton);
+
+        // amplitude button
+        const $amplitudeButton = document.createElement('button');
+        $amplitudeButton.id = 'genrf__amplitude-button';
+        $amplitudeButton.classList.add('button', 'button--square');
+        $amplitudeButton.innerText = 'AMPTD';
+        $amplitudeButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($amplitudeButton);
+
+        // toggle rf button
+        const $toggleRfButton = document.createElement('button');
+        $toggleRfButton.id = 'genrf__toggle-rf-button';
+        $toggleRfButton.classList.add('button', 'button--small');
+        $toggleRfButton.innerText = 'RF OFF';
+        $toggleRfButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($toggleRfButton);
+
+        // increment amplitude button
+        const $incrementAmplitudeButton = document.createElement('button');
+        $incrementAmplitudeButton.id = 'genrf__increment-amplitude-button';
+        $incrementAmplitudeButton.classList.add('button', 'button--small');
+        $incrementAmplitudeButton.innerText = '+';
+        $incrementAmplitudeButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($incrementAmplitudeButton);
+
+        // decrement amplitude button
+        const $decrementAmplitudeButton = document.createElement('button');
+        $decrementAmplitudeButton.id = 'genrf__decrement-amplitude-button';
+        $decrementAmplitudeButton.classList.add('button', 'button--small');
+        $decrementAmplitudeButton.innerText = '-';
+        $decrementAmplitudeButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($decrementAmplitudeButton);
+
+        // numpad 7 button
+        const $numpad7Button = document.createElement('button');
+        $numpad7Button.id = 'genrf__numpad-7-button';
+        $numpad7Button.classList.add('button', 'button--small');
+        $numpad7Button.innerText = '7';
+        $numpad7Button.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpad7Button);
+
+        // numpad 4 button
+        const $numpad4Button = document.createElement('button');
+        $numpad4Button.id = 'genrf__numpad-4-button';
+        $numpad4Button.classList.add('button', 'button--small');
+        $numpad4Button.innerText = '4';
+        $numpad4Button.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpad4Button);
+
+        // numpad 1 button
+        const $numpad1Button = document.createElement('button');
+        $numpad1Button.id = 'genrf__numpad-1-button';
+        $numpad1Button.classList.add('button', 'button--small');
+        $numpad1Button.innerText = '1';
+        $numpad1Button.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpad1Button);
+
+        // numpad 0 button
+        const $numpad0Button = document.createElement('button');
+        $numpad0Button.id = 'genrf__numpad-0-button';
+        $numpad0Button.classList.add('button', 'button--small');
+        $numpad0Button.innerText = '0';
+        $numpad0Button.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpad0Button);
+
+        // numpad 8 button
+        const $numpad8Button = document.createElement('button');
+        $numpad8Button.id = 'genrf__numpad-8-button';
+        $numpad8Button.classList.add('button', 'button--small');
+        $numpad8Button.innerText = '8';
+        $numpad8Button.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpad8Button);
+
+        // numpad 5 button
+        const $numpad5Button = document.createElement('button');
+        $numpad5Button.id = 'genrf__numpad-5-button';
+        $numpad5Button.classList.add('button', 'button--small');
+        $numpad5Button.innerText = '5';
+        $numpad5Button.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpad5Button);
+
+        // numpad 2 button
+        const $numpad2Button = document.createElement('button');
+        $numpad2Button.id = 'genrf__numpad-2-button';
+        $numpad2Button.classList.add('button', 'button--small');
+        $numpad2Button.innerText = '2';
+        $numpad2Button.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpad2Button);
+
+        // numpad dot button
+        const $numpadDotButton = document.createElement('button');
+        $numpadDotButton.id = 'genrf__numpad-dot-button';
+        $numpadDotButton.classList.add('button', 'button--small');
+        $numpadDotButton.innerText = '.';
+        $numpadDotButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpadDotButton);
+
+        // numpad 9 button
+        const $numpad9Button = document.createElement('button');
+        $numpad9Button.id = 'genrf__numpad-9-button';
+        $numpad9Button.classList.add('button', 'button--small');
+        $numpad9Button.innerText = '9';
+        $numpad9Button.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpad9Button);
+
+        // numpad 6 button
+        const $numpad6Button = document.createElement('button');
+        $numpad6Button.id = 'genrf__numpad-6-button';
+        $numpad6Button.classList.add('button', 'button--small');
+        $numpad6Button.innerText = '6';
+        $numpad6Button.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpad6Button);
+
+        // numpad 3 button
+        const $numpad3Button = document.createElement('button');
+        $numpad3Button.id = 'genrf__numpad-3-button';
+        $numpad3Button.classList.add('button', 'button--small');
+        $numpad3Button.innerText = '3';
+        $numpad3Button.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpad3Button);
+
+        // numpad minus button
+        const $numpadMinusButton = document.createElement('button');
+        $numpadMinusButton.id = 'genrf__numpad-minus-button';
+        $numpadMinusButton.classList.add('button', 'button--small');
+        $numpadMinusButton.innerText = '-';
+        $numpadMinusButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpadMinusButton);
+
+        // dbm button
+        const $numpadDbmButton = document.createElement('button');
+        $numpadDbmButton.id = 'genrf__dbm-button';
+        $numpadDbmButton.classList.add('button', 'button--small');
+        $numpadDbmButton.innerText = 'dBm';
+        $numpadDbmButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpadDbmButton);
+
+        // mhz button
+        const $numpadMhzButton = document.createElement('button');
+        $numpadMhzButton.id = 'genrf__mhz-button';
+        $numpadMhzButton.classList.add('button', 'button--small');
+        $numpadMhzButton.innerText = 'MHz';
+        $numpadMhzButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpadMhzButton);
+
+        // percent button
+        const $numpadPercentButton = document.createElement('button');
+        $numpadPercentButton.id = 'genrf__percent-button';
+        $numpadPercentButton.classList.add('button', 'button--small');
+        $numpadPercentButton.innerText = '%';
+        $numpadPercentButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpadPercentButton);
+
+        // erase button
+        const $numpadEraseButton = document.createElement('button');
+        $numpadEraseButton.id = 'genrf__erase-button';
+        $numpadEraseButton.classList.add('button', 'button--small');
+        $numpadEraseButton.innerText = 'Erase';
+        $numpadEraseButton.addEventListener('click', () => {
+            
+        });
+        $container.appendChild($numpadEraseButton);
     }
 
     // OUTPUT

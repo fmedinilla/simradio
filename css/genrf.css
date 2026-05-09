@@ -24,3 +24,152 @@
     font-size: 3.9vw;
     letter-spacing: -10%;
 }
+
+.button {
+    font-size: 1cqw;
+}
+
+.button--small {
+    width: 4%;
+    height: 8%;
+}
+
+.button--square {
+    width: 4%;
+    height: 12%;
+}
+
+.button--large {
+    width: 8.2%;
+    height: 12%;
+}
+
+#genrf__power-button {
+    top: 78%;
+    left: 5%;
+}
+
+#genrf__mod-button {
+    top: 53%;
+    left: 21.2%;
+}
+
+#genrf__toggle-mod-button {
+    top: 82%;
+    left: 15%;
+}
+
+#genrf__increment-mod-button {
+    top: 67.3%;
+    left: 21.1%;
+}
+
+#genrf__decrement-mod-button {
+    top: 77.3%;
+    left: 21.1%;
+}
+
+#genrf__frequency-button {
+    top: 53%;
+    left: 32.8%;
+}
+
+#genrf__amplitude-button {
+    top: 53%;
+    left: 43%;
+}
+
+#genrf__toggle-rf-button {
+    top: 82%;
+    left: 85.5%;
+}
+
+#genrf__increment-amplitude-button {
+    top: 67.3%;
+    left: 43%;
+}
+
+#genrf__decrement-amplitude-button {
+    top: 77.3%;
+    left: 43%;
+}
+
+#genrf__numpad-7-button {
+    top: 53%;
+    left: 54.5%;
+}
+
+#genrf__numpad-8-button {
+    top: 53%;
+    left: 59%;
+}
+
+#genrf__numpad-9-button {
+    top: 53%;
+    left: 63.5%;
+}
+
+#genrf__mhz-button {
+    top: 53%;
+    left: 69.5%;
+}
+
+#genrf__dbm-button {
+    top: 53%;
+    left: 74%;
+}
+
+#genrf__numpad-4-button {
+    top: 63%;
+    left: 54.5%;
+}
+
+#genrf__numpad-5-button {
+    top: 63%;
+    left: 59%;
+}
+
+#genrf__numpad-6-button {
+    top: 63%;
+    left: 63.5%;
+}
+
+#genrf__numpad-1-button {
+    top: 72%;
+    left: 54.5%;
+}
+
+#genrf__numpad-2-button {
+    top: 72%;
+    left: 59%;
+}
+
+#genrf__numpad-3-button {
+    top: 72%;
+    left: 63.5%;
+}
+
+#genrf__percent-button {
+    top: 72%;
+    left: 69.5%;
+}
+
+#genrf__numpad-0-button {
+    top: 82%;
+    left: 54.5%;
+}
+
+#genrf__numpad-dot-button {
+    top: 82%;
+    left: 59%;
+}
+
+#genrf__numpad-minus-button {
+    top: 82%;
+    left: 63.5%;
+}
+
+#genrf__erase-button {
+    top: 82%;
+    left: 69.5%;
+}
