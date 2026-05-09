@@ -1,9 +1,17 @@
 # DEVLOG
 
+## 09 de mayo de 2026
+- se ajusta el tamaño del panel bajo del transceptor.
+- se sincroniza el estado interno del transceptor con su UI.
+- se agregan los botones al generador RF (solo interfaz).
+- se remplaza el screenshot del README
+
 ## 06 de mayo de 2026
 - se trabaja en la reactividad del estado de las clases `GenRF`, `Transceiver` y `TIMS`.
-- se actualiza la ficha técnica del proyecto y el screenshoot del README.
+- se actualiza la ficha técnica del proyecto y el screenshot del README.
 - se implementan los displays de `GenRF`.
+- se arregla el overflow del display del transceptor.
+- se implementa la interfaz de los potenciometros.
 
 ## 05 de mayo de 2026
 - se trabaja en el borrador de la ficha técnica del proyecto.
