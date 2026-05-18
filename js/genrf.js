@@ -122,17 +122,21 @@ class GenRF {
         if (!this.state.power) return;
 
         if (input_mode === GenRFInputMode.MODULATION) {
-            this.toggleModulation();
+            this.toggleModulation(true);
         } else if (input_mode === GenRFInputMode.AMPLITUDE) {
-            this.toggleRf();
+            this.toggleRf(true);
         }
 
-        this.updateState({ input_mode, input_value: '' });
+        this.updateState({ input_mode, input_value: '', input_unit: GenRFUnits.NONE });
     }
     
     // MODULATION
-    toggleModulation() {
+    toggleModulation(forced = null) {
         if (!this.state.power) return;
+        if (forced !== null) {
+            this.updateState({ mod: { ...this.state.mod, on: forced } });
+            return;
+        }
         this.updateState({ mod: { ...this.state.mod, on: !this.state.mod.on } });
     }
 
@@ -147,8 +151,12 @@ class GenRF {
     }
     
     // RF
-    toggleRf() {
+    toggleRf(forced = null) {
         if (!this.state.power) return;
+        if (forced !== null) {
+            this.updateState({ rf: { ...this.state.rf, on: forced } });
+            return;
+        }
         this.updateState({ rf: { ...this.state.rf, on: !this.state.rf.on } });
     }
 
