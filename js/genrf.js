@@ -158,6 +158,8 @@ class GenRF {
     // DISPLAY
     modulationDisplay() {
         if (!this.state.power) return '';
+        if (!this.state.mod.on) return '';
+
         let displayValue = "";
 
         if (this.state.input_mode === GenRFInputMode.MODULATION) {
@@ -184,6 +186,8 @@ class GenRF {
 
     amplitudeDisplay() {
         if (!this.state.power) return '';
+        if (!this.state.rf.on) return '';
+        
         let displayValue = "";
 
         if (this.state.input_mode === GenRFInputMode.AMPLITUDE) {
