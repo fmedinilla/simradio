@@ -109,7 +109,7 @@ class TIMS {
         const MAX_LEVEL = 6;
         const MIN_LEVEL = -35;
 
-        const audioMonitor = new TimsAudioMonitor();
+        if (!basebandAudioSignal) return;
 
         this.updateState({
             audio_level: basebandAudioSignal.audio_level,
