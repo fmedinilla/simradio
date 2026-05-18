@@ -156,7 +156,7 @@ class GenRF {
     // DISPLAY
     modulationDisplay() {
         if (!this.state.power) return '';
-        let displayValue;
+        let displayValue = "";
 
         if (this.state.input_mode === GenRFInputMode.NONE) {
             displayValue = this.state.mod.depth;
@@ -169,7 +169,7 @@ class GenRF {
 
     frequencyDisplay() { // 000.000
         if (!this.state.power) return '';
-        let displayValue;
+        let displayValue = "";
 
         if (this.state.input_mode === GenRFInputMode.NONE) {
             displayValue = this.state.carrier_freq.toFixed(3);
@@ -182,7 +182,7 @@ class GenRF {
 
     amplitudeDisplay() {
         if (!this.state.power) return '';
-        let displayValue;
+        let displayValue = "";
 
         if (this.state.input_mode === GenRFInputMode.NONE) {
             displayValue = this.state.rf.amplitude;
