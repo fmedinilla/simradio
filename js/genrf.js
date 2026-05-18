@@ -21,7 +21,7 @@ const DEFAULT_GENRF_STATE = {
     carrier_freq: 0, // MHz
     rf: {
         on: false,
-        amplitude: 0 // dBm
+        amplitude: -150 // dBm
     },
     tone_freq: 1000, // Hz
     input_mode: GenRFInputMode.NONE,
@@ -120,6 +120,13 @@ class GenRF {
     // INPUT MODES
     setInputMode(input_mode) {
         if (!this.state.power) return;
+
+        if (input_mode === GenRFInputMode.MODULATION) {
+            this.toggleModulation();
+        } else if (input_mode === GenRFInputMode.AMPLITUDE) {
+            this.toggleRf();
+        }
+
         this.updateState({ input_mode, input_value: '' });
     }
     
@@ -187,7 +194,7 @@ class GenRF {
     amplitudeDisplay() {
         if (!this.state.power) return '';
         if (!this.state.rf.on) return '';
-        
+
         let displayValue = "";
 
         if (this.state.input_mode === GenRFInputMode.AMPLITUDE) {

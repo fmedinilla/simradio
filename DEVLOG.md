@@ -5,6 +5,7 @@
 - se vincula el estado del generador y sus displays
 - se arregla el metodo togglePower del generador
 - se arregla visualización cuando el modulo de modulación o rf está apagado
+- se agrega que los modulos de modulación y rf se enciendan cuando se use su modo de input
 
 ## 09 de mayo de 2026
 - se ajusta el tamaño del panel bajo del transceptor.
