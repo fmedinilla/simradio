@@ -56,8 +56,9 @@ class GenRF {
 
     // GENERATOR
     togglePower() {
+        const lastPowerState = this.state.power;
         this.resetState();
-        this.updateState({ power: !this.state.power });
+        this.updateState({ power: !lastPowerState });
     }
 
     parseInput() {

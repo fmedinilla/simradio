@@ -3,6 +3,7 @@
 ## 18 de mayo de 2026
 - se agregan las llamadas de las acciones de los botones del generador.
 - se vincula el estado del generador y sus displays
+- se arregla el metodo togglePower del generador
 
 ## 09 de mayo de 2026
 - se ajusta el tamaño del panel bajo del transceptor.
