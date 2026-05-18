@@ -45,7 +45,7 @@ class GenRF {
     // STATE
     updateState(newState) {
         this.state = { ...this.state, ...newState };
-        this.onUpdate();
+        this.onUpdate(this.output());
         this.render();
         console.log('GenRF state', this.state);
     }

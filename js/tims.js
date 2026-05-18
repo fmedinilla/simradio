@@ -138,6 +138,8 @@ class TIMS {
 
     getAudioLevelDisplayValue() {
         // pattern 888.8
+        if (this.state.audio_level === null) return '';
+
         const value = this.state.audio_level.toFixed(1);
         const paddedValue = value.padStart(5, '!'); // Rellenar con '8' a la izquierda hasta tener 5 caracteres
         return paddedValue;
@@ -145,6 +147,7 @@ class TIMS {
 
     getAudioFreqDisplayValue() {
         // pattern 88888
+        if (this.state.audio_freq === null) return '';
         const value = Math.round(this.state.audio_freq).toString();
         const paddedValue = value.padStart(5, '!'); // Rellenar con '8' a la izquierda hasta tener 5 caracteres
         return paddedValue;
