@@ -7,6 +7,7 @@
 - se arregla visualización cuando el modulo de modulación o rf está apagado
 - se agrega que los modulos de modulación y rf se enciendan cuando se use su modo de input
 - se actualizan los metodos de toggle para permitir un valor forzado
+- se implementa el LED del SQ del transceptor
 
 ## 09 de mayo de 2026
 - se ajusta el tamaño del panel bajo del transceptor.
