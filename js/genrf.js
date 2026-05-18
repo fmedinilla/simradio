@@ -159,10 +159,10 @@ class GenRF {
         if (!this.state.power) return '';
         let displayValue = "";
 
-        if (this.state.input_mode === GenRFInputMode.NONE) {
+        if (this.state.input_mode === GenRFInputMode.MODULATION) {
+             displayValue = this.state.input_value;
+        } else {
             displayValue = this.state.mod.depth;
-        } else if (this.state.input_mode === GenRFInputMode.MODULATION) {
-            displayValue = this.state.input_value;
         }
 
         return displayValue.toString().padStart(2, '!');
@@ -172,10 +172,10 @@ class GenRF {
         if (!this.state.power) return '';
         let displayValue = "";
 
-        if (this.state.input_mode === GenRFInputMode.NONE) {
+        if (this.state.input_mode === GenRFInputMode.FREQUENCY) {
+            displayValue = (+this.state.input_value).toFixed(3);
+        } else {
             displayValue = this.state.carrier_freq.toFixed(3);
-        } else if (this.state.input_mode === GenRFInputMode.FREQUENCY) {
-            displayValue = this.state.input_value;
         }
 
         return displayValue.toString().padStart(7, '!');
@@ -185,10 +185,10 @@ class GenRF {
         if (!this.state.power) return '';
         let displayValue = "";
 
-        if (this.state.input_mode === GenRFInputMode.NONE) {
-            displayValue = this.state.rf.amplitude;
-        } else if (this.state.input_mode === GenRFInputMode.AMPLITUDE) {
+        if (this.state.input_mode === GenRFInputMode.AMPLITUDE) {
             displayValue = this.state.input_value;
+        } else {
+            displayValue = this.state.rf.amplitude;
         }
 
         return displayValue.toString().padStart(4, '!');
