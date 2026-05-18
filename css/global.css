@@ -1,0 +1,34 @@
+/* ==========================================
+   Estilos Base para cualquier LED
+   ========================================== */
+[class*="led-"] {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+}
+
+/* ==========================================
+   Variantes de Color (Apagado vs Encendido)
+   ========================================== */
+
+/* LED AMARILLO */
+.led-yellow {
+  background-color: #aa8800;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #443300 0 -1px 9px, #776600 0 2px 12px;
+}
+.led-yellow.led--on {
+  background-color: #ffdd00;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #ffffff 0 1px 9px, #ffea00 0 0 20px 10px;
+}
+
+/* LED ROJO */
+.led-red {
+  background-color: #a00000;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #400000 0 -1px 9px, #700000 0 2px 12px;
+}
+.led-red.led--on {
+  background-color: #ff0000;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #ffffff 0 1px 9px, #ff3333 0 0 20px 10px;
+}

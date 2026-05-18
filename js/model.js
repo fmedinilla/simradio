@@ -3,7 +3,7 @@ function processSignal({rf_power, carrier_freq, tone, depth, is_muted, agc_enabl
     const SQ_HISTERESIS = 13; // dB
     const SENSIBILITY = -102; // dBm
     
-    const SQ_OPEN = BASE_SQ_LEVEL + sq_level; // dBm
+    const SQ_OPEN = sq_level; // dBm
     const SQ_CLOSE = SQ_OPEN - SQ_HISTERESIS; // dBm
 
     // Validar señal

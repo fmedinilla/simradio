@@ -110,9 +110,11 @@ class Transceiver {
     state = {
         on: false,
         remote: false,
-        sq_level: -135,
+        sq_level: 0,
+        sq_level_pot: 113,
         agc_enabled: true,
-        af_level: -135,
+        af_level: 0,
+        af_level_pot: -135,
         frequency: 300.00, // MHz
         is_muted: true,
         rfSignal: RfSignal.empty(),
@@ -136,26 +138,32 @@ class Transceiver {
 
     togglePower() {
         this.updateState({ on: !this.state.on });
+        this.processSignal();
     }
 
     setAgc(enabled) {
         this.updateState({ agc_enabled: enabled });
+        this.processSignal();
     }
 
     toggleRemote() {
         this.updateState({ remote: !this.state.remote });
+        this.processSignal();
     }
 
     setSqLevel(level) {
         this.updateState({ sq_level: level });
+        this.processSignal();
     }
 
     setAfLevel(level) {
         this.updateState({ af_level: level });
+        this.processSignal();
     }
 
     setFrequency(freq) {
         this.updateState({ frequency: freq });
+        this.processSignal();
     }
 
     input(rfSignal) {
@@ -198,15 +206,22 @@ class Transceiver {
             .then(html => {
                 $container.innerHTML = html;
 
+                const mapRange = (value, inMin, inMax, outMin, outMax) => {
+                    return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+                };
+
                 const setAfAngle = initPotentiometer("af-pot", (angle) => {
-                    this.updateState({ af_level: angle });
+                    this.updateState({ af_level_pot: angle });
                 });
                 const setSqAngle = initPotentiometer("sq-pot", (angle) => {
-                    this.updateState({ sq_level: angle });
+                    const mappedValue = Math.round(mapRange(angle, -135, 135, -120, -90));
+                    console.log('Mapped SQ Level:', mappedValue, 'for angle:', angle);
+                    this.updateState({ sq_level_pot: angle, sq_level: mappedValue, is_muted: true });
+                    this.processSignal();
                 });
 
-                setAfAngle(this.state.af_level);
-                setSqAngle(this.state.sq_level);
+                setAfAngle(this.state.af_level_pot);
+                setSqAngle(this.state.sq_level_pot);
 
                 const $display = document.getElementById('transceptor-display');
                 const $powerSwitch = document.getElementById('transceptor-power');
@@ -233,6 +248,13 @@ class Transceiver {
 
                     $remoteSwitch.disabled = true;
                     $agcSwitch.disabled = true;
+                }
+
+                const $sqLed = document.getElementById('sq-led');
+                if (this.state.is_muted) {
+                    $sqLed.classList.remove('led--on');
+                } else {
+                    $sqLed.classList.add('led--on');
                 }
             })
             .catch(error => console.error('Error loading transceiver template:', error));
