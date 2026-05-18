@@ -47,6 +47,7 @@ class GenRF {
         this.state = { ...this.state, ...newState };
         this.onUpdate();
         this.render();
+        console.log('GenRF state', this.state);
     }
 
     resetState() {
@@ -260,7 +261,7 @@ class GenRF {
         $powerButton.classList.add('button', 'button--small');
         $powerButton.innerText = 'ON';
         $powerButton.addEventListener('click', () => {
-            
+            this.togglePower();
         });
         $container.appendChild($powerButton);
 
@@ -270,7 +271,7 @@ class GenRF {
         $modButton.classList.add('button', 'button--square');
         $modButton.innerText = 'AM';
         $modButton.addEventListener('click', () => {
-            
+            this.setInputMode(GenRFInputMode.MODULATION);
         });
         $container.appendChild($modButton);
 
@@ -280,7 +281,7 @@ class GenRF {
         $toggleModButton.classList.add('button', 'button--small');
         $toggleModButton.innerText = 'OFF';
         $toggleModButton.addEventListener('click', () => {
-            
+            this.toggleModulation();
         });
         $container.appendChild($toggleModButton);
 
@@ -290,7 +291,7 @@ class GenRF {
         $incrementModButton.classList.add('button', 'button--small');
         $incrementModButton.innerText = '+';
         $incrementModButton.addEventListener('click', () => {
-            
+            this.incrementModulation();
         });
         $container.appendChild($incrementModButton);
 
@@ -300,7 +301,7 @@ class GenRF {
         $decrementModButton.classList.add('button', 'button--small');
         $decrementModButton.innerText = '-';
         $decrementModButton.addEventListener('click', () => {
-            
+            this.decrementModulation();
         });
         $container.appendChild($decrementModButton);
 
@@ -310,7 +311,7 @@ class GenRF {
         $frequencyButton.classList.add('button', 'button--large');
         $frequencyButton.innerText = 'FREQUENCY';
         $frequencyButton.addEventListener('click', () => {
-            
+            this.setInputMode(GenRFInputMode.FREQUENCY);
         });
         $container.appendChild($frequencyButton);
 
@@ -320,7 +321,7 @@ class GenRF {
         $amplitudeButton.classList.add('button', 'button--square');
         $amplitudeButton.innerText = 'AMPTD';
         $amplitudeButton.addEventListener('click', () => {
-            
+            this.setInputMode(GenRFInputMode.AMPLITUDE);
         });
         $container.appendChild($amplitudeButton);
 
@@ -330,7 +331,7 @@ class GenRF {
         $toggleRfButton.classList.add('button', 'button--small');
         $toggleRfButton.innerText = 'RF OFF';
         $toggleRfButton.addEventListener('click', () => {
-            
+            this.toggleRf();
         });
         $container.appendChild($toggleRfButton);
 
@@ -340,7 +341,7 @@ class GenRF {
         $incrementAmplitudeButton.classList.add('button', 'button--small');
         $incrementAmplitudeButton.innerText = '+';
         $incrementAmplitudeButton.addEventListener('click', () => {
-            
+            this.incrementRf();
         });
         $container.appendChild($incrementAmplitudeButton);
 
@@ -350,7 +351,7 @@ class GenRF {
         $decrementAmplitudeButton.classList.add('button', 'button--small');
         $decrementAmplitudeButton.innerText = '-';
         $decrementAmplitudeButton.addEventListener('click', () => {
-            
+            this.decrementRf();
         });
         $container.appendChild($decrementAmplitudeButton);
 
@@ -360,7 +361,7 @@ class GenRF {
         $numpad7Button.classList.add('button', 'button--small');
         $numpad7Button.innerText = '7';
         $numpad7Button.addEventListener('click', () => {
-            
+            this.pressNumpad('7');
         });
         $container.appendChild($numpad7Button);
 
@@ -370,7 +371,7 @@ class GenRF {
         $numpad4Button.classList.add('button', 'button--small');
         $numpad4Button.innerText = '4';
         $numpad4Button.addEventListener('click', () => {
-            
+            this.pressNumpad('4');
         });
         $container.appendChild($numpad4Button);
 
@@ -380,7 +381,7 @@ class GenRF {
         $numpad1Button.classList.add('button', 'button--small');
         $numpad1Button.innerText = '1';
         $numpad1Button.addEventListener('click', () => {
-            
+           this.pressNumpad('1'); 
         });
         $container.appendChild($numpad1Button);
 
@@ -390,7 +391,7 @@ class GenRF {
         $numpad0Button.classList.add('button', 'button--small');
         $numpad0Button.innerText = '0';
         $numpad0Button.addEventListener('click', () => {
-            
+            this.pressNumpad('0');
         });
         $container.appendChild($numpad0Button);
 
@@ -400,7 +401,7 @@ class GenRF {
         $numpad8Button.classList.add('button', 'button--small');
         $numpad8Button.innerText = '8';
         $numpad8Button.addEventListener('click', () => {
-            
+            this.pressNumpad('8');
         });
         $container.appendChild($numpad8Button);
 
@@ -410,7 +411,7 @@ class GenRF {
         $numpad5Button.classList.add('button', 'button--small');
         $numpad5Button.innerText = '5';
         $numpad5Button.addEventListener('click', () => {
-            
+            this.pressNumpad('5');
         });
         $container.appendChild($numpad5Button);
 
@@ -420,7 +421,7 @@ class GenRF {
         $numpad2Button.classList.add('button', 'button--small');
         $numpad2Button.innerText = '2';
         $numpad2Button.addEventListener('click', () => {
-            
+            this.pressNumpad('2');
         });
         $container.appendChild($numpad2Button);
 
@@ -430,7 +431,7 @@ class GenRF {
         $numpadDotButton.classList.add('button', 'button--small');
         $numpadDotButton.innerText = '.';
         $numpadDotButton.addEventListener('click', () => {
-            
+            this.pressNumpad('.');
         });
         $container.appendChild($numpadDotButton);
 
@@ -440,7 +441,7 @@ class GenRF {
         $numpad9Button.classList.add('button', 'button--small');
         $numpad9Button.innerText = '9';
         $numpad9Button.addEventListener('click', () => {
-            
+            this.pressNumpad('9');
         });
         $container.appendChild($numpad9Button);
 
@@ -450,7 +451,7 @@ class GenRF {
         $numpad6Button.classList.add('button', 'button--small');
         $numpad6Button.innerText = '6';
         $numpad6Button.addEventListener('click', () => {
-            
+            this.pressNumpad('6');
         });
         $container.appendChild($numpad6Button);
 
@@ -460,7 +461,7 @@ class GenRF {
         $numpad3Button.classList.add('button', 'button--small');
         $numpad3Button.innerText = '3';
         $numpad3Button.addEventListener('click', () => {
-            
+            this.pressNumpad('3');
         });
         $container.appendChild($numpad3Button);
 
@@ -470,7 +471,7 @@ class GenRF {
         $numpadMinusButton.classList.add('button', 'button--small');
         $numpadMinusButton.innerText = '-';
         $numpadMinusButton.addEventListener('click', () => {
-            
+            this.pressNumpad('-');
         });
         $container.appendChild($numpadMinusButton);
 
@@ -480,7 +481,7 @@ class GenRF {
         $numpadDbmButton.classList.add('button', 'button--small');
         $numpadDbmButton.innerText = 'dBm';
         $numpadDbmButton.addEventListener('click', () => {
-            
+            this.dBm();
         });
         $container.appendChild($numpadDbmButton);
 
@@ -490,7 +491,7 @@ class GenRF {
         $numpadMhzButton.classList.add('button', 'button--small');
         $numpadMhzButton.innerText = 'MHz';
         $numpadMhzButton.addEventListener('click', () => {
-            
+            this.mhz();
         });
         $container.appendChild($numpadMhzButton);
 
@@ -500,7 +501,7 @@ class GenRF {
         $numpadPercentButton.classList.add('button', 'button--small');
         $numpadPercentButton.innerText = '%';
         $numpadPercentButton.addEventListener('click', () => {
-            
+            this.percent();
         });
         $container.appendChild($numpadPercentButton);
 
@@ -510,7 +511,7 @@ class GenRF {
         $numpadEraseButton.classList.add('button', 'button--small');
         $numpadEraseButton.innerText = 'Erase';
         $numpadEraseButton.addEventListener('click', () => {
-            
+            alert('Erase button clicked');
         });
         $container.appendChild($numpadEraseButton);
     }
