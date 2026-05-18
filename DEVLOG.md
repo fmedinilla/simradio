@@ -1,5 +1,8 @@
 # DEVLOG
 
+## 18 de mayo de 2026
+- se agregan las llamadas de las acciones de los botones del generador.
+
 ## 09 de mayo de 2026
 - se ajusta el tamaño del panel bajo del transceptor.
 - se sincroniza el estado interno del transceptor con su UI.
