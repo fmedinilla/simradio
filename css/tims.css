@@ -16,17 +16,6 @@
     letter-spacing: 3%;
 }
 
-.button {
-    position: absolute;
-    background-color: hsla(0, 100%, 100%);
-    transition: opacity 0.3s;
-    border: 1px solid black;
-}
-
-.button:hover {
-    cursor: pointer;
-}
-
 #tims__power-button {
     top: 82%;
     left: 4%;
