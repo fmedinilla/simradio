@@ -32,7 +32,7 @@ function processSignal({rf_power, carrier_freq, tone, depth, is_muted, agc_enabl
         noise_level = SENSIBILITY - (-98) + (-19.04);
     }
 
-    let out_level = is_muted ? -100 : Math.max(signal_level, noise_level);
+    let out_level = is_muted ? -40.7 : Math.max(signal_level, noise_level);
     out_level += af_level;
 
     return { 
