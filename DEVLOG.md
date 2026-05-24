@@ -1,5 +1,11 @@
 # DEVLOG
 
+## 24 de mayo de 2026
+- se arregla el nivel de salida del transceptor.
+- se deshabilita el procesado de señal si el transceptor está apagado.
+- se agrega una marca de agua de autor en el header.
+- se agrega el CSS global a la página de about.
+
 ## 18 de mayo de 2026
 - se agregan las llamadas de las acciones de los botones del generador.
 - se vincula el estado del generador y sus displays
