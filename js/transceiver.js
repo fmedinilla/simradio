@@ -132,12 +132,12 @@ class Transceiver {
     // STATE
     updateState(newState) {
         this.state = { ...this.state, ...newState };
-        this.onUpdate();
+        this.onUpdate(this.output());
         this.render();
     }
 
     togglePower() {
-        this.updateState({ on: !this.state.on });
+        this.updateState({ on: !this.state.on, is_muted: true });
         this.processSignal();
     }
 
@@ -167,16 +167,16 @@ class Transceiver {
     }
 
     input(rfSignal) {
-        if (!this.state.on) {
-            console.warn('Transceiver is off. Ignoring input signal.');
-            return;
-        }
-
         this.updateState({ rfSignal });
         this.processSignal();
     }
 
     processSignal() {
+        if (!this.state.on) {
+            console.warn('Transceiver is off. Ignoring input signal.');
+            return;
+        }
+
         const { carrier_freq, rf_power, tone_freq, mod_depth } = this.state.rfSignal;
         const processedSignal = MODEL.processSignal({
             rf_power: rf_power,
