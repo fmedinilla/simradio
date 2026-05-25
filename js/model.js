@@ -1,7 +1,7 @@
 function processSignal({rf_power, carrier_freq, tone, depth, is_muted, agc_enabled, af_level, sq_level}) {
     const BASE_SQ_LEVEL = -98;
-    const SQ_HISTERESIS = 13; // dB
-    const SENSIBILITY = -102; // dBm
+    const SQ_HISTERESIS = localStorage.getItem("histVal") || 13;
+    const SENSIBILITY = localStorage.getItem("sensVal") || -102;
     
     const SQ_OPEN = sq_level; // dBm
     const SQ_CLOSE = SQ_OPEN - SQ_HISTERESIS; // dBm

@@ -2,6 +2,7 @@
 
 ## 25 de mayo de 2026
 - se crea la página de configuracion del transceptor.
+- se vincula la pagina de configuracion con el modelo de procesado del transceptor.
 
 ## 24 de mayo de 2026
 - se arregla el nivel de salida del transceptor.
