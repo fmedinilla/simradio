@@ -1,5 +1,8 @@
 # DEVLOG
 
+## 25 de mayo de 2026
+- se crea la página de configuracion del transceptor.
+
 ## 24 de mayo de 2026
 - se arregla el nivel de salida del transceptor.
 - se deshabilita el procesado de señal si el transceptor está apagado.
