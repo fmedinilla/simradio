@@ -106,6 +106,10 @@ function initPotentiometer(potId, onChange) {
     return setAngle
 }
 
+const mapRange = (value, inMin, inMax, outMin, outMax) => {
+    return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+};
+
 class Transceiver {
     state = {
         on: false,
@@ -126,6 +130,8 @@ class Transceiver {
     };
 
     constructor() {
+        this.state.sq_level = localStorage.getItem("sqInitVal") || -98;
+        this.state.sq_level_pot = mapRange(this.state.sq_level, -120, -90, -135, 135);
         this.render();
     }
 
@@ -206,10 +212,6 @@ class Transceiver {
             .then(html => {
                 $container.innerHTML = html;
 
-                const mapRange = (value, inMin, inMax, outMin, outMax) => {
-                    return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
-                };
-
                 const setAfAngle = initPotentiometer("af-pot", (angle) => {
                     this.updateState({ af_level_pot: angle });
                 });
@@ -240,11 +242,11 @@ class Transceiver {
                 if (this.state.on) {
                     $display.classList.remove('off');
                     $display.classList.add('on');
-                    $display.querySelector('#transceptor-freq').textContent =  this.state.frequency.toFixed(3);
+                    $display.querySelector('#transceptor-freq').textContent = this.state.frequency.toFixed(3);
                 } else {
                     $display.classList.remove('on');
                     $display.classList.add('off');
-                    $display.querySelector('#transceptor-freq').textContent =  '-';
+                    $display.querySelector('#transceptor-freq').textContent = '-';
 
                     $remoteSwitch.disabled = true;
                     $agcSwitch.disabled = true;
