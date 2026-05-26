@@ -1,6 +1,4 @@
 # SimRadio
-![Status: Work in Progress](https://img.shields.io/badge/Status-Work_In_Progress-red)
-
 Entorno web para simulación de pruebas Rx en transceptores radio.
 
 ## Motivación
@@ -22,7 +20,7 @@ La reactividad de los componentes se gestiona mediante el uso de callbacks. Cada
 ### Webapp
 La webapp está estructurada en tres páginas HTML:
 - **Inicio (index.html)**: Entorno de simulación
-- **Configuración (configuration.hmtl)**: Pagina para configurar el comportamiento del transceptor y del modelo de procesamiento de señal.
+- **Configuración (config.hmtl)**: Pagina para configurar el comportamiento del transceptor y del modelo de procesamiento de señal.
 - **Acerca de (about.html)**: Página para mostrar más acerca del proyecto.
 
 La navegación entre módulos se gestiona mediante un componente de cabecera (*header*) común.
@@ -33,4 +31,7 @@ El flujo de datos es unidireccional y reactivo. El Generador encapsula parámetr
 ![Diagrama flujo de señal RF](./images/signal_flow_diagram.png)
 
 ## Logros
-![Status: TODO](https://img.shields.io/badge/Status-Planned-lightgrey)
+
+Con el desarrollo de esta webapp he conseguido interiorizar los conceptos de componentes web, que son la base de como funcionan los frameworks y librerias como React, Vue, Angular, etc. a grandes rasgos.
+
+El uso de esta herramienta para su fin, ha dado lugar a un personal técnico más capacitado y con los conceptos, referentes a las pruebas de calidad de un transceptor en Rx, interiorizados. Esto permite una mayor eficacia en el trabajo y una respuesta rápida ante incidentes o averias.
