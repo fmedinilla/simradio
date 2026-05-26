@@ -142,7 +142,7 @@ class GenRF {
 
     incrementModulation() {
         if (!this.state.power) return;
-        this.updateState({ mod: { ...this.state.mod, depth: Math.min(100, this.state.mod.depth + 1) } });
+        this.updateState({ mod: { ...this.state.mod, depth: Math.min(99, this.state.mod.depth + 1) } });
     }
 
     decrementModulation() {
