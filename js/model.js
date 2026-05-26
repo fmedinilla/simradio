@@ -22,14 +22,14 @@ function processSignal({rf_power, carrier_freq, tone, depth, is_muted, agc_enabl
     let signal_level = 20 * Math.log10(depth/85); // -9.04
 
     if (!agc_enabled) {
-        signal_level += (rf_power - (-98));
+        signal_level += (rf_power - (BASE_SQ_LEVEL));
     }
 
     let noise_level;
     if (agc_enabled) {
         noise_level = -19.04;
     } else {
-        noise_level = SENSIBILITY - (-98) + (-19.04);
+        noise_level = SENSIBILITY - (BASE_SQ_LEVEL) + (-19.04);
     }
 
     let out_level = is_muted ? -40.7 : Math.max(signal_level, noise_level);
