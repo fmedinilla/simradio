@@ -167,7 +167,7 @@ class GenRF {
 
     decrementRf() {
         if (!this.state.power) return;
-        this.updateState({ rf: { ...this.state.rf, amplitude: Math.max(-120, this.state.rf.amplitude - 1) } });
+        this.updateState({ rf: { ...this.state.rf, amplitude: Math.max(-200, this.state.rf.amplitude - 1) } });
     }
 
     // DISPLAY
