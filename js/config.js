@@ -30,8 +30,10 @@ function applyConfigForm() {
 }
 
 function setConfig({sensVal, histVal, sqInitVal}) {
+    const minSens = -98 - histVal;
+
     // update UI
-    $sensibilityCurrentVal.innerText = `(${sensVal} dBm)`;
+    $sensibilityCurrentVal.innerText = `(${sensVal} dBm | (${minSens}, -98) dBm)`;
     $histeresisCurrentVal.innerText = `(${histVal} dBm)`;
     $sqInitCurrentVal.innerText = `(${sqInitVal} dBm)`;
 
@@ -55,5 +57,11 @@ function getConfig() {
 
 document.getElementById("config__reset-btn").addEventListener("click", () => resetConfigForm());
 document.getElementById("config__apply-btn").addEventListener("click", () => applyConfigForm());
+
+$histeresisInput.addEventListener("input", () => {
+    const histVal = $histeresisInput.value;
+    const minSens = -98 - histVal;
+    $sensibilityCurrentVal.innerText = `(${$sensibilityInput.value} dBm | (${minSens}, -98) dBm)`;
+});
 
 getConfig();
