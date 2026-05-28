@@ -531,7 +531,7 @@ class GenRF {
         $numpadEraseButton.classList.add('button', 'button--small');
         $numpadEraseButton.innerText = 'Erase';
         $numpadEraseButton.addEventListener('click', () => {
-            alert('Erase button clicked');
+            this.erase();
         });
         $container.appendChild($numpadEraseButton);
     }
