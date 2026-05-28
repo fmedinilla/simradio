@@ -1,5 +1,11 @@
 # DEVLOG
 
+## 28 de mayo de 2026
+- Se arregla el boton de "ERASE" del generador RF.
+
+## 27 de mayo 2026
+- Se implementa una forma de ver la sensibilidad minima viable segun la histeresis del SQ.
+
 ## 25 de mayo de 2026
 - se crea la página de configuracion del transceptor.
 - se vincula la pagina de configuracion con el modelo de procesado del transceptor.
