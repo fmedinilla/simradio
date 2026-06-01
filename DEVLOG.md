@@ -1,5 +1,8 @@
 # DEVLOG
 
+## 01 de junio de 2026
+- Se agrega soporte para dispositivos táctiles para los controles tipo potenciometros.
+
 ## 28 de mayo de 2026
 - Se arregla el boton de "ERASE" del generador RF.
 
