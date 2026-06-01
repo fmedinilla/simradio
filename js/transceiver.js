@@ -67,22 +67,28 @@ function initPotentiometer(potId, onChange) {
     }
 
     // Eventos del ratón
-    knob.addEventListener("mousedown", (e) => {
+    knob.addEventListener("pointerdown", (e) => {
         isDragging = true;
         lastY = e.clientY;
         document.body.style.cursor = "ns-resize";
+        knob.setPointerCapture(e.pointerId);
         e.preventDefault();
     });
 
     // Usamos window para que no se "atasque" si el ratón sale rápido de la perilla
-    window.addEventListener("mouseup", () => {
+    window.addEventListener("pointerup", (e) => {
         if (isDragging) {
             isDragging = false;
             document.body.style.cursor = "default";
+            try {
+                knob.releasePointerCapture(e.pointerId);
+            } catch (err) {
+                console.error('Error releasing pointer capture:', err);
+            }
         }
     });
 
-    window.addEventListener("mousemove", (e) => {
+    window.addEventListener("pointermove", (e) => {
         if (!isDragging) return;
 
         const deltaY = lastY - e.clientY;
