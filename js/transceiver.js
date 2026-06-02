@@ -124,7 +124,7 @@ class Transceiver {
         sq_level_pot: 113,
         agc_enabled: true,
         af_level: 0,
-        af_level_pot: -135,
+        af_level_pot: 0,
         frequency: 300.00, // MHz
         is_muted: true,
         rfSignal: RfSignal.empty(),
@@ -219,7 +219,10 @@ class Transceiver {
                 $container.innerHTML = html;
 
                 const setAfAngle = initPotentiometer("af-pot", (angle) => {
-                    this.updateState({ af_level_pot: angle });
+                    const mappedValue = Math.round(mapRange(angle, -135, 135, -6, 3));
+                    console.log('Mapped AF Level:', mappedValue, 'for angle:', angle);
+                    this.updateState({ af_level_pot: angle, af_level: mappedValue });
+                    this.processSignal();
                 });
                 const setSqAngle = initPotentiometer("sq-pot", (angle) => {
                     const mappedValue = Math.round(mapRange(angle, -135, 135, -120, -90));
