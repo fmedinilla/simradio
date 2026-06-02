@@ -1,5 +1,8 @@
 # DEVLOG
 
+## 02 de junio de 2026
+- Se implementa la funcionalidad para el ajuste del nivel de af del transceptor.
+
 ## 01 de junio de 2026
 - Se agrega soporte para dispositivos táctiles para los controles tipo potenciometros.
 
