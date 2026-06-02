@@ -220,13 +220,11 @@ class Transceiver {
 
                 const setAfAngle = initPotentiometer("af-pot", (angle) => {
                     const mappedValue = Math.round(mapRange(angle, -135, 135, -6, 3));
-                    console.log('Mapped AF Level:', mappedValue, 'for angle:', angle);
                     this.updateState({ af_level_pot: angle, af_level: mappedValue });
                     this.processSignal();
                 });
                 const setSqAngle = initPotentiometer("sq-pot", (angle) => {
                     const mappedValue = Math.round(mapRange(angle, -135, 135, -120, -90));
-                    console.log('Mapped SQ Level:', mappedValue, 'for angle:', angle);
                     this.updateState({ sq_level_pot: angle, sq_level: mappedValue, is_muted: true });
                     this.processSignal();
                 });
